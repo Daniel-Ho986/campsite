@@ -1,23 +1,23 @@
-const mongoose = require("mongoose");
-const cities = require("./cities");
-const { places, descriptors } = require("./seedHelpers");
-const Campground = require("../models/campground");
+const mongoose = require('mongoose');
+const cities = require('./cities');
+const { places, descriptors } = require('./seedHelpers');
+const Campground = require('../models/campground');
 
 // Connect Database with Mongoose
 mongoose
-  .connect("mongodb://127.0.0.1:27017/campsite")
+  .connect('mongodb://127.0.0.1:27017/campsite')
   .then(() => {
-    console.log("Mongo Connection Open!");
+    console.log('Mongo Connection Open!');
   })
   .catch((err) => {
-    console.log("Mongo Error!");
+    console.log('Mongo Error!');
     console.log(err);
   });
 
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log("Database connected");
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Database connected');
 });
 
 const sample = (arr) => arr[Math.floor(Math.random() * arr.length)];
