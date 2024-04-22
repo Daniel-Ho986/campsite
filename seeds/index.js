@@ -1,3 +1,4 @@
+// Utilies to pre-populate the database
 const mongoose = require('mongoose');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
