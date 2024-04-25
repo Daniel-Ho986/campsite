@@ -1,10 +1,10 @@
 // Review Schema
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ReviewSchema = new Schema({
-    body: String,
-    rating: Number,
+  body: String,
+  rating: Number,
 });
 
 module.exports = mongoose.model("Review", ReviewSchema);
