@@ -64,8 +64,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // Store a user in the session
 passport.deserializeUser(User.deserializeUser()); // Get a user out of the session
 
-// Allow access to flash under 'success' and 'error' in locals
-app.use((req, res, next) => {
+// Allow access to 'currentUser', 'success', 'error' in templates
+app.use((req, res, next) => { 
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
