@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const { Body } = require("twilio/lib/twiml/MessagingResponse");
 
 // Campground Validator
 module.exports.campgroundSchema = Joi.object({
