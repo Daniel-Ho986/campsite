@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config(); 
+}
+
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -65,7 +69,7 @@ passport.serializeUser(User.serializeUser()); // Store a user in the session
 passport.deserializeUser(User.deserializeUser()); // Get a user out of the session
 
 // Allow access to 'currentUser', 'success', 'error' in templates
-app.use((req, res, next) => { 
+app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
