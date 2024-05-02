@@ -4,22 +4,26 @@ const campgrounds = require("../controllers/campground");
 const catchAsync = require("../utils/catchAsync");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 
-// Read all campgrounds
-router.get("/", catchAsync(campgrounds.index));
+router.route("/")
+  .get(catchAsync(campgrounds.index))
+  .post(
+    isLoggedIn,
+    validateCampground,
+    catchAsync(campgrounds.createCampground)
+  );
 
 // Create new campground
 router.get("/new", isLoggedIn, catchAsync(campgrounds.renderNewForm));
 
-// POST route for campground
-router.post(
-  "/",
-  isLoggedIn,
-  validateCampground,
-  catchAsync(campgrounds.createCampground)
-);
-
-// Read a campground
-router.get("/:id", catchAsync(campgrounds.showCampground));
+router.route("/:id")
+  .get(catchAsync(campgrounds.showCampground))
+  .put(
+    isLoggedIn,
+    isAuthor,
+    validateCampground,
+    catchAsync(campgrounds.updateCampground)
+  )
+  .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 // Update a campground
 router.get(
@@ -27,23 +31,6 @@ router.get(
   isLoggedIn,
   isAuthor,
   catchAsync(campgrounds.renderEditForm)
-);
-
-// PUT route for campground
-router.put(
-  "/:id",
-  isLoggedIn,
-  isAuthor,
-  validateCampground,
-  catchAsync(campgrounds.updateCampground)
-);
-
-// DELETE route for campground
-router.delete(
-  "/:id",
-  isLoggedIn,
-  isAuthor,
-  catchAsync(campgrounds.deleteCampground)
 );
 
 module.exports = router;
