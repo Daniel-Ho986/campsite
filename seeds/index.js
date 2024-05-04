@@ -35,10 +35,11 @@ const seedDB = async () => {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda repellendus blanditiis vel autem nihil ipsa corporis sapiente, aperiam ullam recusandae, atque velit officiis eligendi dicta esse possimus. Natus, non reiciendis?",
       price,
+      geometry: { type: 'Point', coordinates: [ -122.330062, 47.603832 ] },
       images: [
         {
-          url: "https://res.cloudinary.com/df5pg2ohi/image/upload/v1714760194/Campsite/eqbs6g9yqrecpeqfm1la.jpg",
-          filename: "Campsite/eqbs6g9yqrecpeqfm1la",
+          url: "https://res.cloudinary.com/df5pg2ohi/image/upload/v1714856584/Campsite/zdnfqhlxvse4ohzxzz3n.jpg",
+          filename: "Campsite/zdnfqhlxvse4ohzxzz3n",
         },
         {
           url: "https://res.cloudinary.com/df5pg2ohi/image/upload/v1714760194/Campsite/k4dypxpx822ig0wijswz.jpg",
