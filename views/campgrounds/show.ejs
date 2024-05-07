@@ -5,19 +5,26 @@
   <div class="col-6">
     <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <% if (campground.images.length) { %>
-          <% campground.images.forEach((img, i) => { %>
-            <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-              <img src="<%= img.url %>" class="d-block w-100" alt="<%= campground.title %> Image <%= i + 1 %>" />
-            </div>
-          <% }) %>
-        <% } else { %>
-          <div class="carousel-item active">
-            <img src="https://res.cloudinary.com/df5pg2ohi/image/upload/v1714849786/Campsite/m4wd0hjjmvarzamfx278.jpg" class="d-block w-100" alt="Default Campsite Image" />
-          </div>
+        <% if (campground.images.length) { %> <% campground.images.forEach((img,
+        i) => { %>
+        <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+          <img
+            src="<%= img.url %>"
+            class="d-block w-100"
+            alt="<%= campground.title %> Image <%= i + 1 %>"
+          />
+        </div>
+        <% }) %> <% } else { %>
+        <div class="carousel-item active">
+          <img
+            src="https://res.cloudinary.com/df5pg2ohi/image/upload/v1714849786/Campsite/m4wd0hjjmvarzamfx278.jpg"
+            class="d-block w-100"
+            alt="Default Campsite Image"
+          />
+        </div>
         <% } %>
       </div>
-      
+
       <% if (campground.images.length > 1) { %>
       <button
         class="carousel-control-prev"
@@ -71,7 +78,7 @@
     </div>
   </div>
   <div class="col-6">
-    <div id="cluster-map"></div>
+    <div id="map"></div>
     <% if (currentUser) { %>
     <h2>Leave a Review</h2>
     <form
