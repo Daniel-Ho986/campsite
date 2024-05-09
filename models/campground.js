@@ -1,7 +1,6 @@
 // Campground Schema
 const mongoose = require("mongoose");
 const Review = require("./review");
-const { required } = require("joi");
 const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
@@ -43,6 +42,10 @@ const CampgroundSchema = new Schema(
         ref: "Review",
       },
     ],
+    createdAt: {
+      type: Date,
+        default: () => new Date().toISOString().split('T')[0]
+    }
   },
   opts
 );

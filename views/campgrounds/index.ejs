@@ -1,9 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <div id="cluster-map"></div>
 <h1>All Campgrounds</h1>
-<div>
-  <a href="/campgrounds/new">Add Campground</a>
-</div>
 
 <% for (let campground of campgrounds) { %>
 <div class="card mb-3">
@@ -18,7 +15,7 @@
       <% } else { %>
       <img
         class="img-fluid"
-        src="https://res.cloudinary.com/df5pg2ohi/image/upload/v1714849786/Campsite/m4wd0hjjmvarzamfx278.jpg"
+        src="/images/defaultImage.jpg"
         alt="Default Campsite Image"
       />
       <% } %>
