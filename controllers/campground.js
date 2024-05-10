@@ -91,7 +91,9 @@ module.exports.updateCampground = async (req, res) => {
     ...req.body.campground,
   });
 
-  if (req.files.length + campground.images.length > MAX_IMAGES_PER_CAMPGROUND) {
+  const totalImages = req.files.length + campground.images.length - req.body.deleteImages.length;
+
+  if (totalImages > MAX_IMAGES_PER_CAMPGROUND) {
     req.flash("error", `Maximum ${MAX_IMAGES_PER_CAMPGROUND} images allowed.`);
     return res.redirect(`/campgrounds/${id}/edit`);
   }
