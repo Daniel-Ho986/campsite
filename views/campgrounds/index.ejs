@@ -44,9 +44,25 @@
 </div>
 <% } %>
 
+<nav aria-label="Campground navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <%= currentPage > 1 ? '' : 'disabled' %>">
+      <a class="page-link" href="?page=<%= currentPage - 1 %>">Previous</a>
+    </li>
+    <% for (let i = 1; i <= totalPages; i++) { %>
+    <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+      <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+    </li>
+    <% } %>
+    <li class="page-item <%= currentPage < totalPages ? '' : 'disabled' %>">
+      <a class="page-link" href="?page=<%= currentPage + 1 %>">Next</a>
+    </li>
+  </ul>
+</nav>
+
 <script>
   const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
-  const campgrounds = { features: <%- JSON.stringify(campgrounds) %> }
+  const campgrounds = { features: <%- JSON.stringify(allCampgrounds) %> }
 </script>
 
 <script src="/javascripts/search.js"></script>

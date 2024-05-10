@@ -5,10 +5,25 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
 const MAX_IMAGES_PER_CAMPGROUND = 3;
+const ITEMS_PER_PAGE = 10;
 
 module.exports.index = async (req, res) => {
-  const campgrounds = await Campground.find({});
-  res.render("campgrounds/index", { campgrounds });
+  const page = +req.query.page || 1;
+  const totalCampgrounds = await Campground.countDocuments({});
+  const totalPages = Math.ceil(totalCampgrounds / ITEMS_PER_PAGE);
+  const skip = (page - 1) * ITEMS_PER_PAGE;
+  const allCampgrounds = await Campground.find({})
+
+  const campgrounds = await Campground.find({})
+    .skip(skip)
+    .limit(ITEMS_PER_PAGE);
+
+  res.render("campgrounds/index", {
+    campgrounds,
+    allCampgrounds,
+    totalPages,
+    currentPage: page,
+  });
 };
 
 module.exports.renderNewForm = async (req, res) => {
@@ -91,25 +106,32 @@ module.exports.updateCampground = async (req, res) => {
     ...req.body.campground,
   });
 
-  const totalImages = req.files.length + campground.images.length - req.body.deleteImages.length;
+  let totalImages = campground.images.length;
 
-  if (totalImages > MAX_IMAGES_PER_CAMPGROUND) {
-    req.flash("error", `Maximum ${MAX_IMAGES_PER_CAMPGROUND} images allowed.`);
-    return res.redirect(`/campgrounds/${id}/edit`);
+  if (req.files) {
+    const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+    campground.images.push(...imgs);
+    totalImages += req.files.length;
   }
 
-  const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
-  campground.images.push(...imgs);
-  await campground.save();
-
-  if (req.body.deleteImages) {
+  if (req.body.deleteImages && req.body.deleteImages.length > 0) {
     for (let filename of req.body.deleteImages) {
       await cloudinary.uploader.destroy(filename);
     }
     await campground.updateOne({
       $pull: { images: { filename: { $in: req.body.deleteImages } } },
     });
+
+    totalImages -= req.body.deleteImages.length;
   }
+
+  if (totalImages > MAX_IMAGES_PER_CAMPGROUND) {
+    req.flash("error", `Maximum ${MAX_IMAGES_PER_CAMPGROUND} images allowed.`);
+    return res.redirect(`/campgrounds/${id}/edit`);
+  }
+
+  await campground.save();
+
   req.flash("success", "Successfully updated campground!");
   res.redirect(`/campgrounds/${campground._id}`);
 };
