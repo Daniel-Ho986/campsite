@@ -12,7 +12,7 @@ module.exports.index = async (req, res) => {
   const totalCampgrounds = await Campground.countDocuments({});
   const totalPages = Math.ceil(totalCampgrounds / ITEMS_PER_PAGE);
   const skip = (page - 1) * ITEMS_PER_PAGE;
-  const allCampgrounds = await Campground.find({})
+  const allCampgrounds = await Campground.find({});
 
   const campgrounds = await Campground.find({})
     .skip(skip)

@@ -13,3 +13,10 @@
   height: 350px;
   background-color: rgba(119, 119, 119, 0.2);
 }
+
+@media (max-width: 3246px) {
+  #camgroundCarousel {
+    height: 200px;
+  }
+  
+}

@@ -1,4 +1,4 @@
-function filterCampgrounds() {
+const filterCampgrounds = () => {
   const searchInput = document
     .getElementById("searchInput")
     .value.toLowerCase();
