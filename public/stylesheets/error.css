@@ -1,0 +1,59 @@
+body {
+  height: 100vh;
+  background-image: url("/images/camp.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.error-container {
+  max-width: 60vw;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.error-code {
+  font-size: 72px;
+  margin: 20px;
+  color: #de1025;
+}
+
+.error-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.error-text {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.home-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #333;
+}
+
+@media (max-width: 992px) {
+  body {
+    background-size: 80%;
+  }
+}

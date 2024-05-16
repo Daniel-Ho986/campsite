@@ -16,6 +16,15 @@
 
 @media (max-width: 768px) {
   .carousel-item .img-fluid {
-    height: 80px;
+    height: 150px;
   }
 }
+
+@media (max-width: 992px) {
+  .carousel-item .img-fluid {
+    height: 250px;
+  }
+}
+
+
+

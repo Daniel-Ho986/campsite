@@ -19,7 +19,7 @@ module.exports.index = async (req, res) => {
     .limit(ITEMS_PER_PAGE);
 
   res.render("campgrounds/index", {
-    campgrounds,
+    campgrounds: allCampgrounds,
     allCampgrounds,
     totalPages,
     currentPage: page,
