@@ -80,12 +80,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/fakeUser", async (req, res) => {
-  const user = new User({ email: "dan@gmail.com", username: "dan" });
-  const newUser = await User.register(user, "chicken");
-  res.send(newUser);
-});
-
 app.use("/", userRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes);
@@ -103,7 +97,6 @@ app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = "Oh no, something went wrong";
   res.status(statusCode).render("error", { err });
-  // res.send("Error, something went wrong");
 });
 
 app.listen(port, () => {

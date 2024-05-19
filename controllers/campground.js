@@ -142,3 +142,8 @@ module.exports.deleteCampground = async (req, res) => {
   req.flash("success", "Successfully deleted a campground!");
   res.redirect("/campgrounds");
 };
+
+module.exports.renderMapPage = async (req, res) => {
+  const campgrounds = await Campground.find({});
+  res.render("campgrounds/map", { campgrounds });
+};

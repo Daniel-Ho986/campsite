@@ -19,13 +19,15 @@
     />
     <link rel="stylesheet" href="/stylesheets/app.css" />
   </head>
-  <body class="d-flex flex-column vh-100">
+  <body class="d-flex flex-column min-vh-100">
     <%- include('../partials/navbar') %>
 
-    <main class="container mt-5">
-      <%- include('../partials/flash') %> <%- body %>
+    <main class="container mt-5 flex-grow-1">
+      <%- include('../partials/flash') %> 
+      <%- body %>
     </main>
     <%- include('../partials/footer') %>
+
     <!-- Bootstrap Popper Script -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -38,7 +40,6 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
-
     <script src="/javascripts/validateForms.js"></script>
   </body>
 </html>

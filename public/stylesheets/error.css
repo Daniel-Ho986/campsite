@@ -8,17 +8,29 @@ body {
   align-items: center;
 }
 
+.navbar {
+  position: fixed;
+}
+
 .footer {
   position: fixed;
   bottom: 0;
+}
+
+.cover-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
   width: 100%;
+  flex-direction: column;
+  padding-top: 60px; 
 }
 
 .error-container {
   max-width: 60vw;
   text-align: center;
   margin: auto;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   max-width: 400px;
   width: 90%;
@@ -43,7 +55,7 @@ body {
 
 .home-link {
   text-decoration: none;
-  color: #000;
+  color: rgb(25, 25, 230);
   font-weight: bold;
   transition: color 0.3s ease;
 }
