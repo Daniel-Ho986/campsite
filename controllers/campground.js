@@ -5,7 +5,7 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 
 const MAX_IMAGES_PER_CAMPGROUND = 3;
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 12;
 
 module.exports.index = async (req, res) => {
   const page = +req.query.page || 1;
@@ -19,8 +19,8 @@ module.exports.index = async (req, res) => {
     .limit(ITEMS_PER_PAGE);
 
   res.render("campgrounds/index", {
-    campgrounds: allCampgrounds,
     allCampgrounds,
+    campgrounds,
     totalPages,
     currentPage: page,
   });
