@@ -17,6 +17,8 @@ router
     catchAsync(campgrounds.createCampground)
   );
 
+router.get("/search", catchAsync(campgrounds.searchCampgrounds));
+
 // Create new campground
 router.get("/new", isLoggedIn, catchAsync(campgrounds.renderNewForm));
 

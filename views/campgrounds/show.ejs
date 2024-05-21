@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/stylesheets/stars.css" />
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-lg-6 col-md-6 col-sm-12">
     <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <% if (campground.images.length) { %> <% campground.images.forEach((img,
@@ -86,7 +86,7 @@
 
 
 
-  <div class="col-6">
+  <div class="col-lg-6 col-md-6 col-sm-12">
     <div id="map"></div>
     <% if (currentUser) { %>
     <h2>Leave a Review</h2>
@@ -185,3 +185,5 @@
   const campground = <%- JSON.stringify(campground) %>
 </script>
 <script src="/javascripts/showPageMap.js"></script>
+
+

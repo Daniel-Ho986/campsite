@@ -4,9 +4,9 @@
 <div id="campground-container" class="row">
   <% for (let campground of campgrounds) { %>
   <div class="campground-col col-lg-4 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
-    <div class="card" style="width: 18rem">
+    <div class="card loading" style="width: 18rem">
       <a class="img-link" href="campgrounds/<%= campground._id %>">
-        <% if (campground.images.length){ %>
+        <% if (campground.images.length) { %>
         <img class="index-img card-img-top" src="<%= campground.images[0].url %>" alt="<%= campground.title %> Image 1" />
         <% } else { %>
         <img class="index-img card-img-top" src="/images/defaultImage.jpg" alt="Default Campsite Image" />
@@ -24,6 +24,8 @@
   <% } %>
 </div>
 
-<%- include('../partials/pagination') %>
+<div id="pagination-container">
+  <%- include('../partials/pagination') %>
+</div>
 
 <script src="/javascripts/search.js"></script>

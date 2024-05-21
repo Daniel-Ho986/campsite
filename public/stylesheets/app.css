@@ -24,11 +24,18 @@ body {
   height: 300px;
 }
 
+.no-campgrounds {
+  font-size: 2.5rem;
+  color: #777;
+  margin-top: 2rem;
+}
+
+
 .campground-col .card {
   border: 1px solid #333;
 }
 
-.card {
+.card, .list-group-item {
   background-color: rgb(220, 220, 205);
 }
 

@@ -12,19 +12,48 @@ module.exports.index = async (req, res) => {
   const totalCampgrounds = await Campground.countDocuments({});
   const totalPages = Math.ceil(totalCampgrounds / ITEMS_PER_PAGE);
   const skip = (page - 1) * ITEMS_PER_PAGE;
-  const allCampgrounds = await Campground.find({});
-
   const campgrounds = await Campground.find({})
     .skip(skip)
     .limit(ITEMS_PER_PAGE);
 
-  res.render("campgrounds/index", {
-    allCampgrounds,
-    campgrounds,
-    totalPages,
-    currentPage: page,
-  });
+  if (req.xhr) {
+    return res.status(200).json({ campgrounds, totalCampgrounds, totalPages });
+  } else {
+    res.render("campgrounds/index", {
+      campgrounds,
+      totalPages,
+      currentPage: page,
+    });
+  }
 };
+
+module.exports.searchCampgrounds = async (req, res) => {
+  const { query, page = 1 } = req.query;
+  let campgrounds = [];
+  let totalCampgrounds = 0;
+
+  if (query) {
+    const searchRegex = new RegExp(query, 'i');
+    campgrounds = await Campground.find({
+      $or: [
+        { title: searchRegex },
+        { description: searchRegex },
+        { location: searchRegex },
+      ],
+    });
+    totalCampgrounds = campgrounds.length;
+  } else {
+    totalCampgrounds = await Campground.countDocuments({});
+    campgrounds = await Campground.find({});
+  }
+
+  const totalPages = Math.ceil(totalCampgrounds / ITEMS_PER_PAGE);
+  const skip = (page - 1) * ITEMS_PER_PAGE;
+  const paginatedCampgrounds = campgrounds.slice(skip, skip + ITEMS_PER_PAGE);
+
+  res.status(200).json({ campgrounds: paginatedCampgrounds, totalCampgrounds, totalPages });
+};
+
 
 module.exports.renderNewForm = async (req, res) => {
   res.render("campgrounds/new");
