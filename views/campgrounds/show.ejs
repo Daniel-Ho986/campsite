@@ -87,7 +87,7 @@
 
 
   <div class="col-lg-6 col-md-6 col-sm-12">
-    <div id="map"></div>
+    <div id="map" class="mb-3"></div>
     <% if (currentUser) { %>
     <h2>Leave a Review</h2>
     <form
@@ -96,7 +96,7 @@
       class="mb-3 validated-form"
       novalidate
     >
-      <div class="mb-3">
+      <div class="">
         <fieldset class="starability-basic">
           <input
             type="radio"
@@ -145,7 +145,7 @@
         </fieldset>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="body">Review Text</label>
+        <label class="form-label" for="body">Review</label>
         <textarea
           class="form-control"
           name="review[body]"
