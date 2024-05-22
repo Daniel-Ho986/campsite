@@ -14,7 +14,9 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
-const dbUrl = process.env.DB_URL;
+const dbUrl = "mongodb://127.0.0.1:27017/campsite";
+const MongoStore = require('connect-mongo');
+
 // "mongodb://127.0.0.1:27017/campsite"
 
 // Express Router
@@ -24,7 +26,7 @@ const reviewRoutes = require("./routes/reviews");
 
 // Connect Database with Mongoose
 mongoose
-  .connect("mongodb://127.0.0.1:27017/campsite")
+  .connect(dbUrl)
   .then(() => {
     console.log("Mongo Connection Open!");
   })
@@ -52,7 +54,20 @@ app.use(methodOverride("_method")); // Override method for PUT and DELETE in for
 app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize());
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret: "thisshouldbeabettersecret",
+  },  
+});
+
+store.on("error", function(e) {
+  console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
+  store,
   name: "session",
   secret: "thisshouldbeabettersecret!",
   resave: false,
