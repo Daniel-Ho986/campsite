@@ -14,6 +14,8 @@ ImageSchema.virtual("thumbnail").get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
+// Defines the campground schema with fields for title, images, 
+// location, price, description, author, reviews, and creation date.
 const CampgroundSchema = new Schema(
   {
     title: String,
@@ -44,17 +46,19 @@ const CampgroundSchema = new Schema(
     ],
     createdAt: {
       type: Date,
-        default: () => new Date().toISOString().split('T')[0]
-    }
+      default: () => new Date().toISOString().split("T")[0],
+    },
   },
   opts
 );
 
 CampgroundSchema.virtual("properties.popUpMarkup").get(function () {
-  return `<strong><a href="/campgrounds/${this._id}">${this.title}</a></strong><p>${this.description.substring(0, 20)}...</p>`;
+  return `<strong><a href="/campgrounds/${
+    this._id
+  }">${this.title}</a></strong><p>${this.description.substring(0, 20)}...</p>`;
 });
 
-// Middleware to delete reviews from database
+// Middleware to delete associated reviews when a campground is deleted
 CampgroundSchema.post("findOneAndDelete", async function (doc) {
   if (doc) {
     await Review.deleteMany({
