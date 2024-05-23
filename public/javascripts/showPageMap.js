@@ -1,3 +1,4 @@
+// Displays a map showing a campground's location using Mapbox GL JS.
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
   container: "map",
