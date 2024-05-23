@@ -1,31 +1,46 @@
-<% layout('layouts/boilerplate') %>
-<%- include('../partials/searchbar') %>
+<!-- Displays a list of campgrounds with pagination and a search bar -->
+
+<% layout('layouts/boilerplate') %> <%- include('../partials/searchbar') %>
 
 <div id="campground-container" class="row">
   <% for (let campground of campgrounds) { %>
-  <div class="campground-col col-lg-4 col-md-6 col-sm-12 mb-3 d-flex justify-content-center">
+  <div
+    class="campground-col col-lg-4 col-md-6 col-sm-12 mb-3 d-flex justify-content-center"
+  >
     <div class="card loading" style="width: 18rem">
       <a class="img-link" href="campgrounds/<%= campground._id %>">
         <% if (campground.images.length) { %>
-        <img class="index-img card-img-top" src="<%= campground.images[0].url %>" alt="<%= campground.title %> Image 1" />
+        <img
+          class="index-img card-img-top"
+          src="<%= campground.images[0].url %>"
+          alt="<%= campground.title %> Image 1"
+          loading="lazy"
+        />
         <% } else { %>
-        <img class="index-img card-img-top" src="/images/defaultImage.jpg" alt="Default Campsite Image" />
+        <img
+          class="index-img card-img-top"
+          src="/images/defaultImage.jpg"
+          alt="Default Campsite Image"
+          loading="lazy"
+        />
         <% } %>
       </a>
       <div class="card-body">
         <a class="title-link" href="campgrounds/<%= campground._id %>">
           <h5 class="card-title"><%= campground.title %></h5>
         </a>
-        <p class="card-text"><%= campground.description.substring(0, 100) %>...</p>
-        <p class="card-text"><small class="text-muted"><%= campground.location %></small></p>
+        <p class="card-text">
+          <%= campground.description.substring(0, 100) %>...
+        </p>
+        <p class="card-text">
+          <small class="text-muted"><%= campground.location %></small>
+        </p>
       </div>
     </div>
   </div>
   <% } %>
 </div>
 
-<div id="pagination-container">
-  <%- include('../partials/pagination') %>
-</div>
+<div id="pagination-container"><%- include('../partials/pagination') %></div>
 
 <script src="/javascripts/search.js"></script>

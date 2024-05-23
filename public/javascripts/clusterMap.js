@@ -1,3 +1,5 @@
+// Sets up a Mapbox map to display clustered campground data.
+// Handles user interactions like clicking on clusters and individual points to display campgrounds.
 mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
   container: "cluster-map",
@@ -15,8 +17,6 @@ map.on("load", () => {
   // add the point_count property to your source data.
   map.addSource("allCampgrounds", {
     type: "geojson",
-    // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-    // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
     data: campgrounds,
     cluster: true,
     clusterMaxZoom: 14, // Max zoom to cluster points on
