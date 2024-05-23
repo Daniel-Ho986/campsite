@@ -1,3 +1,4 @@
+// Manages user registration, login, and logout functionalities using Passport.js
 const User = require("../models/user");
 
 module.exports.renderRegister = (req, res) => {
@@ -6,8 +7,8 @@ module.exports.renderRegister = (req, res) => {
 
 module.exports.register = async (req, res, next) => {
   try {
-    const { email, username, password } = req.body;
-    const user = new User({ email, username });
+    const { username, email, password } = req.body;
+    const user = new User({ username, email });
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {
       if (err) return next(err);
@@ -36,7 +37,7 @@ module.exports.logout = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    req.flash("success", "Goodbye");
+    req.flash("success", "Goodbye!");
     res.redirect("/campgrounds");
   });
 };

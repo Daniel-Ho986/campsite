@@ -1,3 +1,5 @@
+// Configures Cloudinary for image storage
+// Limits uploaded images to jpeg, png, jpg formats and stores them in a "Campsite" folder
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 

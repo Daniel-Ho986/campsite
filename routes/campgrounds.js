@@ -7,6 +7,7 @@ const multer = require("multer");
 const { storage } = require("../cloudinary");
 const upload = multer({ storage });
 
+// Route to display all campgrounds
 router
   .route("/")
   .get(catchAsync(campgrounds.index))
@@ -17,13 +18,16 @@ router
     catchAsync(campgrounds.createCampground)
   );
 
+// Route to search campgrounds
 router.get("/search", catchAsync(campgrounds.searchCampgrounds));
 
-// Create new campground
+// Route to create a new campground
 router.get("/new", isLoggedIn, catchAsync(campgrounds.renderNewForm));
 
+// Route to display map of campgrounds
 router.get("/map", catchAsync(campgrounds.renderMapPage));
 
+// Route to display/edit/delete a campground
 router
   .route("/:id")
   .get(catchAsync(campgrounds.showCampground))
@@ -36,7 +40,7 @@ router
   )
   .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
-// Update a campground
+// Route to update a campground
 router.get(
   "/:id/edit",
   isLoggedIn,

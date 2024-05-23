@@ -4,9 +4,10 @@ const reviews = require("../controllers/reviews");
 const catchAsync = require("../utils/catchAsync");
 const { validateReview, isLoggedIn, isReviewAuthor } = require("../middleware");
 
-// POST route for review
+// Route to create a review
 router.post("/", isLoggedIn, validateReview, catchAsync(reviews.createReview));
 
+// Route to delete a review
 router.delete(
   "/:reviewId",
   isLoggedIn,

@@ -3,13 +3,18 @@ const router = express.Router();
 const users = require("../controllers/users");
 const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
-const { storeReturnTo } = require("../middleware");
+const { storeReturnTo, isLoggedIn } = require("../middleware");
+const User = require("../models/user");
 
-router.route("/register")
+// Route to display registration form and register a user
+router
+  .route("/register")
   .get(users.renderRegister)
   .post(catchAsync(users.register));
 
-router.route("/login")
+// Route to display login form and login a user
+router
+  .route("/login")
   .get(users.renderLogin)
   .post(
     // use the storeReturnTo middleware to save the returnTo value from session to res.locals
@@ -22,6 +27,7 @@ router.route("/login")
     users.login
   );
 
+// Route to display logout form
 router.get("/logout", users.logout);
 
 module.exports = router;

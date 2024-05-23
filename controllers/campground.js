@@ -27,13 +27,16 @@ module.exports.index = async (req, res) => {
   }
 };
 
+// Search:
+// Allows searching campgrounds by title, description, or location
+// Supports pagination for displaying campgrounds
 module.exports.searchCampgrounds = async (req, res) => {
   const { query, page = 1 } = req.query;
   let campgrounds = [];
   let totalCampgrounds = 0;
 
   if (query) {
-    const searchRegex = new RegExp(query, 'i');
+    const searchRegex = new RegExp(query, "i");
     campgrounds = await Campground.find({
       $or: [
         { title: searchRegex },
@@ -51,14 +54,20 @@ module.exports.searchCampgrounds = async (req, res) => {
   const skip = (page - 1) * ITEMS_PER_PAGE;
   const paginatedCampgrounds = campgrounds.slice(skip, skip + ITEMS_PER_PAGE);
 
-  res.status(200).json({ campgrounds: paginatedCampgrounds, totalCampgrounds, totalPages });
+  res
+    .status(200)
+    .json({ campgrounds: paginatedCampgrounds, totalCampgrounds, totalPages });
 };
-
 
 module.exports.renderNewForm = async (req, res) => {
   res.render("campgrounds/new");
 };
 
+// CRUD Operations
+
+// Create: 
+// Adds a new campground with geolocation data from Mapbox,
+// checks for title uniqueness, limits images to 3
 module.exports.createCampground = async (req, res, next) => {
   const geoData = await geocoder
     .forwardGeocode({
@@ -94,6 +103,8 @@ module.exports.createCampground = async (req, res, next) => {
   res.redirect(`/campgrounds/${campground._id}`);
 };
 
+// Read:
+// Displays campground details and renders forms for creating and editing campgrounds
 module.exports.showCampground = async (req, res) => {
   const campground = await Campground.findById(req.params.id)
     .populate({
@@ -120,6 +131,8 @@ module.exports.renderEditForm = async (req, res) => {
   res.render("campgrounds/edit", { campground });
 };
 
+// Update:
+// Updates campground details, including image management with Cloudinary
 module.exports.updateCampground = async (req, res) => {
   const { id } = req.params;
   const existingCampground = await Campground.findOne({
@@ -165,6 +178,8 @@ module.exports.updateCampground = async (req, res) => {
   res.redirect(`/campgrounds/${campground._id}`);
 };
 
+// Delete:
+// Deletes a campground and its associated images and reviews
 module.exports.deleteCampground = async (req, res) => {
   const { id } = req.params;
   await Campground.findByIdAndDelete(id);
@@ -172,6 +187,8 @@ module.exports.deleteCampground = async (req, res) => {
   res.redirect("/campgrounds");
 };
 
+// Map:
+// Renders a map with all campgrounds using Mapbox
 module.exports.renderMapPage = async (req, res) => {
   const campgrounds = await Campground.find({});
   res.render("campgrounds/map", { campgrounds });
