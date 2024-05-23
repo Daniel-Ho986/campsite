@@ -1,13 +1,7 @@
 <!-- Allows editing  of campground details including title, 
   location, price, description, images, and includes image deletion -->
 
-<!-- 
-  TODO:  
-  Ensure multipart/form-data is used for file uploads.
-  Add client-side validation feedback.
--->
 <% layout('layouts/boilerplate') %>
-
 <div class="row">
   <h1 class="text-center">Edit Campground</h1>
   <div class="col-md-6 offset-md-3 mb-3">
@@ -64,6 +58,7 @@
                 class="form-control"
                 id="price"
                 placeholder="0.00"
+                step=".01"
                 aria-label="price"
                 aria-describedby="price-label"
                 name="campground[price]"
