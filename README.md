@@ -129,10 +129,8 @@ Campsite is a web application that allows users to browse, create, and review ca
 
 ## Demo
 
-### Screenshots
-
-#### Home Page
-![Home Page](public/demo/home.png)
+[![Campsite Demo](public/demo/home.png)](https://youtu.be/bh0noB1EoGs)
+Click on the image above to watch a video demonstration of Campsite in action.
 
 #### Campground Listing
 ![Campground Listing](public/demo/allCampground.png)
@@ -145,11 +143,6 @@ Campsite is a web application that allows users to browse, create, and review ca
 
 #### Campground Show Page
 ![Campground Show Page](public/demo/show.png)
-
-### Video
-[![Campsite Demo](public/demo/home.png)](https://youtu.be/bh0noB1EoGs)
-
-Click on the image above to watch a video demonstration of Campsite in action.
 
 ## License
 
