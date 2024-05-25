@@ -1,6 +1,6 @@
 # Campsite
 
-Campsite is a web application that allows users to browse, create, and review campgrounds. It features full CRUD functionality, user authentication and authorization, and integrates with various third-party services for enhanced functionality.
+[Campsite](https://campsite-5u82.onrender.com/) is a web application that allows users to browse, create, and review campgrounds. It features full CRUD functionality, user authentication, and authorization, and integrates with various third-party services for enhanced functionality.
 
 ## Table of Contents
 - [Features](#features)
@@ -24,7 +24,7 @@ Campsite is a web application that allows users to browse, create, and review ca
 - **Pagination & Search**: Smooth user experience with paginated and searchable listings.
 
 ### User Management
-- **Authentication**: User registration, login, and logout handled by Passport.js.
+- **Authentication**: User registration, login, and logout are handled by Passport.js.
 - **Authorization**: Protected routes and resources, ensuring only authorized users can perform certain actions.
 - **Profile Management**: Update profiles and change passwords.
 
@@ -105,11 +105,11 @@ Campsite is a web application that allows users to browse, create, and review ca
   - `DELETE /campgrounds/:id/reviews/:reviewId`: Delete a review.
 
 - **User Authentication**: 
-  - `GET /register`: Show registration form.
+  - `GET /register`: Show the registration form.
   - `POST /register`: Register a new user.
   - `GET /login`: Show login form.
-  - `POST /login`: Login a user.
-  - `GET /logout`: Logout a user.
+  - `POST /login`: Log in a user.
+  - `GET /logout`: Log out a user.
 
 ## Views
 
@@ -123,9 +123,9 @@ Campsite is a web application that allows users to browse, create, and review ca
 - **Authentication Checks**:
   - `isLoggedIn`: Ensure the user is logged in.
   - `isAuthor`: Ensure the user is the author of the campground.
-  - `isReviewAuthor`: Ensure the user is the author of the review.
+  - `isReviewAuthor`: Ensure the user is the review's author.
 - **Validation**:
-  - Joi schemas with HTML sanitization for validating campgrounds and reviews.
+  - Joi schemas with HTML sanitization are used to validate campgrounds and reviews.
 
 ## Demo
 
