@@ -137,8 +137,8 @@ Click on the image above to watch a video demonstration of Campsite in action.
 
 #### Login and Registration Pages
 <div style="display: flex; gap: 10px;">
-    <img src="public/demo/login.png" alt="Campground Login Page" width="50%"/>
-    <img src="public/demo/register.png" alt="Campground Registration Page" width="50%"/>
+    <img src="public/demo/login.png" alt="Campground Login Page" height="275" width="40%"/>
+    <img src="public/demo/register.png" alt="Campground Registration Page" height="275" width="40%"/>
 </div>
 
 #### Campground Show Page
