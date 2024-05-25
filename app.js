@@ -18,7 +18,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 
 const app = express();
 
-const dbUrl = "mongodb://127.0.0.1:27017/campsite";
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/campsite";
 
 // Connect MongoDB with Mongoose
 mongoose
